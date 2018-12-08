@@ -17,7 +17,7 @@ for repo in $REPOS; do
         # now target the user's fork so we're not writing to the upstream org
         git remote set-url origin "git@github.com:$USER/$repo"
         git checkout -b "$branch_name"
-        find . -type f | xargs sed -i "s,FROM quay.io/deis/base:$OLD_VERSION,FROM quay.io/deis/base:$NEW_VERSION,g"
+        find . -type f | xargs sed -i "s,FROM deiscc/base:$OLD_VERSION,FROM deiscc/base:$NEW_VERSION,g"
         git commit -am "chore(Dockerfile): update deis/base to $NEW_VERSION"
         git push origin "$branch_name"
         if [[ "$ARCH" == "Linux" ]]; then
